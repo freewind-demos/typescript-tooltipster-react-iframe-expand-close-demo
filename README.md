@@ -1,6 +1,11 @@
-Js Hello World Demo
-===================
+JavaScript tooltipster Duplicated ID issue
+==========================================
 
-Open `index.html` in your browser.
+```
+npm install
+open index.html
+```
 
-You will see "Hello, JS!" on the page.
+If you put mouse on Link1 or Link3, there will be a popup as expected.
+
+But put on Link2, there's nothing happens.
