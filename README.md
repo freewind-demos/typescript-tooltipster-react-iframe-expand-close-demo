@@ -1,8 +1,8 @@
-JavaScript Tooltipster Demo
+JavaScript Tooltipster React iFrame Expand Close Demo
 ===========================
 
 ```
 npm install
-npm run demo
+npm start
 ```
 
