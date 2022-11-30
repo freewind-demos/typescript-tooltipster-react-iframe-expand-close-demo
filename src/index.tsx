@@ -6,6 +6,13 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import {TooltipContent} from "./TooltipContent";
 import './index.css'
+import {css} from "@emotion/css";
+
+const center = css`
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+`
 
 $('#button').tooltipster({
     animationDuration: 100,
@@ -16,14 +23,15 @@ $('#button').tooltipster({
     trigger: 'click',
     side: ['right', 'left', 'bottom', 'top'],
     functionReady: (instance, helper) => {
-        console.log("### helper.tooltip", helper.tooltip);
-        if (helper.tooltip) {
-            helper.tooltip.style.width = 'fit-content';
-            helper.tooltip.style.height = 'fit-content';
-        }
-        const container = helper.tooltip?.querySelector('.tooltipster-content');
-        if (container) {
+        let tooltipElement = helper.tooltip;
+        console.log("### helper.tooltip", tooltipElement);
+        if (!tooltipElement) return;
 
+        tooltipElement.style.width = 'fit-content';
+        tooltipElement.style.height = 'fit-content';
+
+        const container = tooltipElement.querySelector('.tooltipster-content');
+        if (container) {
             ReactDOM.render(<TooltipContent
                 iframe={{
                     url: 'https://www.heteroclito.fr/modules/tooltipster/',
@@ -31,7 +39,14 @@ $('#button').tooltipster({
                     initHeight: '400px',
                 }}
                 onClose={() => instance.close()}
-                onExpand={(v) => console.log("### onExpand", v)}
+                onExpand={(expand) => {
+                    if (!tooltipElement) return;
+                    if (expand) {
+                        tooltipElement.classList.add(center);
+                    } else {
+                        tooltipElement.classList.remove(center);
+                    }
+                }}
             />, container);
         }
     },

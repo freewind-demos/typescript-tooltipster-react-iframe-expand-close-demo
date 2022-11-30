@@ -3,6 +3,7 @@
     "start": "vite --open"
   },
   "devDependencies": {
+    "@emotion/css": "^11.10.5",
     "@types/react": "17.0.39",
     "@types/react-dom": "17.0.18",
     "@types/tooltipster": "^0.0.31",
